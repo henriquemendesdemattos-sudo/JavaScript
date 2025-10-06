@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Imagens</title>
+    <style>
+        /* CSS para estilização (Opcional) */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2d2d2d;
+            margin: 0;
+            color: white;
+        }
+        .gallery-container {
+            text-align: center;
+            background-color: #444;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .image-wrapper {
+            margin-bottom: 20px;
+            width: 500px; /* Largura fixa */
+            height: 300px; /* Altura fixa */
+            background-color: #333;
+            border-radius: 10px;
+            overflow: hidden; /* Garante que a imagem não saia do container */
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Faz a imagem cobrir o espaço sem distorcer */
+            display: block;
+        }
+        button {
+            font-size: 1rem;
+            padding: 10px 25px;
+            margin: 0 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            background-color: #007bff;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gallery-container">
+        <h1>Galeria de Natureza</h1>
+        
+        <div class="image-wrapper">
+            <img id="galeriaImg" src="" alt="Imagem da galeria">
+        </div>
+        
+        <div>
+            <button id="btnAnterior">Anterior</button>
+            <button id="btnProximo">Próximo</button>
+        </div>
+    </div>
+
+    <script>
+        // --- LÓGICA JAVASCRIPT ---
+
+        // 1. Selecionar os elementos do HTML
+        const galeriaImg = document.getElementById('galeriaImg');
+        const btnAnterior = document.getElementById('btnAnterior');
+        const btnProximo = document.getElementById('btnProximo');
+
+        // 2. Criar o array com as URLs das imagens
+        const imagens = [
+            'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=500&q=80',
+            'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=500&q=80',
+            'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=500&q=80',
+            'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=500&q=80'
+        ];
+
+        // 3. Criar uma variável para controlar a posição (índice) atual no array
+        let indiceAtual = 0;
+
+        // 4. Criar uma função para atualizar a imagem na tela
+        function atualizarImagem() {
+            // Pega a URL do array usando o índice atual e a define como o 'src' da imagem
+            galeriaImg.src = imagens[indiceAtual];
+        }
+
+        // 5. Adicionar o evento de clique para o botão "Próximo"
+        btnProximo.addEventListener('click', function() {
+            // Incrementa o índice para ir para a próxima imagem
+            indiceAtual++;
+            
+            // VERIFICAÇÃO: Se o índice passar do último item do array...
+            if (indiceAtual >= imagens.length) {
+                // ...ele volta para o início (índice 0).
+                indiceAtual = 0;
+            }
+            
+            // Chama a função para mostrar a nova imagem
+            atualizarImagem();
+        });
+
+        // 6. Adicionar o evento de clique para o botão "Anterior"
+        btnAnterior.addEventListener('click', function() {
+            // Decrementa o índice para ir para a imagem anterior
+            indiceAtual--;
+
+            // VERIFICAÇÃO: Se o índice ficar menor que 0...
+            if (indiceAtual < 0) {
+                // ...ele vai para o final do array (índice do último item).
+                indiceAtual = imagens.length - 1;
+            }
+
+            // Chama a função para mostrar a nova imagem
+            atualizarImagem();
+        });
+
+        // 7. Chamar a função uma vez no início para carregar a primeira imagem
+        atualizarImagem();
+    </script>
+
+</body>
+</html>

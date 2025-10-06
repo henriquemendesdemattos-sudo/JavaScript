@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        /* CSS para estilização */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha no topo */
+            min-height: 100vh;
+            background-color: #eef2f5;
+            margin: 0;
+            padding-top: 50px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-adicionar {
+            display: flex;
+            gap: 10px; /* Espaçamento entre o input e o botão */
+            margin-bottom: 25px;
+        }
+
+        input[type="text"] {
+            flex-grow: 1; /* Faz o input ocupar o espaço disponível */
+            padding: 12px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            background-color: #2779bd;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1d5a8c;
+        }
+
+        ul {
+            list-style-type: none; /* Remove os marcadores da lista */
+            padding: 0;
+            margin: 0;
+        }
+        
+        li {
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #eee;
+            color: #444;
+        }
+        
+        li:first-child {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        li:last-child {
+            border-bottom: none;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Minha Lista de Tarefas</h1>
+
+        <div class="form-adicionar">
+            <input type="text" id="novaTarefaInput" placeholder="Digite uma nova tarefa...">
+            
+            <button id="adicionarTarefaBtn">Adicionar</button>
+        </div>
+        
+        <ul id="listaDeTarefas">
+            </ul>
+    </div>
+
+    <script>
+        // --- LÓGICA JAVASCRIPT ---
+
+        // Selecionar os elementos principais
+        const novaTarefaInput = document.getElementById('novaTarefaInput');
+        const adicionarTarefaBtn = document.getElementById('adicionarTarefaBtn');
+        const listaDeTarefas = document.getElementById('listaDeTarefas');
+
+        // Criar uma função para encapsular a lógica de adicionar tarefa
+        function adicionarTarefa() {
+            // Pegar o texto do input e remover espaços extras
+            const textoDaTarefa = novaTarefaInput.value.trim();
+
+            // Verificar se o input não está vazio
+            if (textoDaTarefa === "") {
+                alert("Por favor, digite uma tarefa antes de adicionar.");
+                return; // Para a execução da função se o campo estiver vazio
+            }
+
+            // Criar um novo elemento <li>
+            const novoItem = document.createElement('li');
+
+            // Definir o conteúdo de texto do novo <li>
+            novoItem.textContent = textoDaTarefa;
+
+            // Adicionar (anexar) o novo <li> à lista <ul>
+            listaDeTarefas.appendChild(novoItem);
+
+            // Limpar o campo de input
+            novaTarefaInput.value = "";
+            
+            // Focar no input novamente para facilitar a adição de novas tarefas
+            novaTarefaInput.focus();
+        }
+
+        // Adicionar o evento de clique ao botão
+        adicionarTarefaBtn.addEventListener('click', adicionarTarefa);
+      
+    </script>
+
+</body>
+</html>

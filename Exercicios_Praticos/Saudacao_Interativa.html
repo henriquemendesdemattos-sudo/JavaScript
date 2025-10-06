@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saudação Interativa</title>
+    <style>
+        /* CSS para estilização (Opcional) */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            font-size: 1rem;
+            padding: 10px 25px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            background-color: #007bff; /* Azul */
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #555;
+            min-height: 25px; /* Evita que o layout "pule" */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Saudação Interativa</h1>
+        
+        <input type="text" id="nomeInput" placeholder="Digite seu nome aqui">
+        
+        <button id="saudarBtn">Saudar</button>
+        
+        <p id="mensagemSaudacao"></p>
+    </div>
+
+    <script>
+        // --- LÓGICA JAVASCRIPT ---
+
+        // 1. Selecionar os elementos do HTML que vamos usar
+        const nomeInput = document.getElementById('nomeInput');
+        const saudarBtn = document.getElementById('saudarBtn');
+        const mensagemSaudacao = document.getElementById('mensagemSaudacao');
+
+        // 2. Adicionar um "ouvinte de evento" para o clique no botão "Saudar"
+        saudarBtn.addEventListener('click', function() {
+            // 3. Pegar o valor digitado no campo de input
+            // A propriedade .value retorna o texto que está dentro do input
+            // .trim() remove espaços em branco no início e no fim
+            const nomeDigitado = nomeInput.value.trim();
+
+            // 4. Verificar se o campo de nome está vazio
+            if (nomeDigitado === "") {
+                // Se estiver vazio, exibe a mensagem de erro
+                mensagemSaudacao.textContent = "Por favor, digite seu nome.";
+                mensagemSaudacao.style.color = 'red'; // Opcional: muda a cor para vermelho
+            } else {
+                // Se não estiver vazio, cria e exibe a saudação personalizada
+                mensagemSaudacao.textContent = `Olá, ${nomeDigitado}! Seja bem-vindo(a)!`;
+                mensagemSaudacao.style.color = '#555'; // Opcional: volta para a cor padrão
+            }
+        });
+    </script>
+
+</body>
+</html>

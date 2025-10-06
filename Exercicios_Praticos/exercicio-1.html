@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador Simples</title>
+    <style>
+        /* CSS para estilização (Opcional) */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: whitesmoke;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: black;
+        }
+        button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        #incrementarBtn {
+            background-color: #28a745; /* Verde */
+        }
+        #incrementarBtn:hover {
+            background-color: #218838;
+        }
+        #resetarBtn {
+            background-color: #dc3545; /* Vermelho */
+        }
+        #resetarBtn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 id="contadorDisplay">0</h2>
+        
+        <button id="incrementarBtn">Incrementar</button>
+        <button id="resetarBtn">Resetar</button>
+    </div>
+
+    <script>
+        // --- LÓGICA JAVASCRIPT ---
+
+        // 1. Selecionar os elementos do HTML que vamos manipular
+        const contadorDisplay = document.getElementById('contadorDisplay');
+        const incrementarBtn = document.getElementById('incrementarBtn');
+        const resetarBtn = document.getElementById('resetarBtn');
+
+        // 2. Criar uma variável para armazenar o valor atual do contador
+        let contador = 0;
+
+        // 3. Adicionar um "ouvinte de evento" para o clique no botão "Incrementar"
+        incrementarBtn.addEventListener('click', function() {
+            // Aumenta o valor da variável em 1
+            contador++;
+            // Atualiza o texto do elemento h2 com o novo valor
+            contadorDisplay.textContent = contador;
+        });
+
+        // 4. Adicionar um "ouvinte de evento" para o clique no botão "Resetar"
+        resetarBtn.addEventListener('click', function() {
+            // Volta o valor da variável para 0
+            contador = 0;
+            // Atualiza o texto do elemento h2 com o valor resetado
+            contadorDisplay.textContent = contador;
+        });
+    </script>
+
+</body>
+</html>

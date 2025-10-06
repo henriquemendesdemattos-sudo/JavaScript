@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Simples (Accordion)</title>
+    <style>
+        /* CSS para estilização e a classe .escondido */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .faq-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden; /* Garante que os cantos arredondados sejam aplicados */
+        }
+        
+        /* Estilo da Pergunta (h3) */
+        .pergunta {
+            padding: 18px 25px;
+            margin: 0;
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between; /* Para o ícone '+' */
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .pergunta:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Ícone de expandir/recolher (opcional, mas melhora a UX) */
+        .pergunta::after {
+            content: '+';
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        /* Estilo da Resposta (div) */
+        .resposta {
+            padding: 25px;
+            margin: 0;
+            background-color: #fdfdfd;
+            border-bottom: 1px solid #e0e0e0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* A classe principal do exercício! */
+        .escondido {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="faq-container">
+        <h3 class="pergunta" id="perguntaFaq">O que é DOM?</h3>
+        
+        <div class="resposta escondido" id="respostaFaq">
+            DOM significa <strong>Document Object Model</strong> (Modelo de Objeto do Documento). É uma representação estruturada do seu documento HTML que permite que linguagens de script, como o JavaScript, acessem e manipulem o conteúdo, a estrutura e o estilo de uma página web. Em outras palavras, o DOM é a ponte que conecta o seu código JavaScript ao HTML da página.
+        </div>
+    </div>
+
+    <script>
+        // --- LÓGICA JAVASCRIPT ---
+
+        // 3. Selecionar os elementos que vamos manipular
+        const pergunta = document.getElementById('perguntaFaq');
+        const resposta = document.getElementById('respostaFaq');
+
+        // 4. Adicionar um evento de clique na pergunta (no h3)
+        pergunta.addEventListener('click', function() {
+            // 5. A mágica acontece aqui!
+            // classList.toggle('escondido') verifica se a classe 'escondido' existe no elemento 'resposta'.
+            // - Se existir, ela remove a classe (mostrando o elemento).
+            // - Se não existir, ela adiciona a classe (escondendo o elemento).
+            resposta.classList.toggle('escondido');
+        });
+    </script>
+
+</body>
+</html>
